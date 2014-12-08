@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".GpaCalculator"
+            android:label="@string/title_activity_gpa_calculator" >
+        </activity>
     </application>
 
 </manifest>

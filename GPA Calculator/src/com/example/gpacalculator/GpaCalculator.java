@@ -28,7 +28,7 @@ public class GpaCalculator extends ActionBarActivity {
                 "A", "B", "C", "D", "F"
             };
         this.arrayGrades = new String[] {
-                "A", "A", "A", "A", "A"
+                "A", "A", "A", "A", "A", "A"
             };
         
         Spinner s1 = (Spinner) findViewById(R.id.spinner1);
@@ -59,6 +59,12 @@ public class GpaCalculator extends ActionBarActivity {
         ArrayAdapter adapter5 = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, arraySpinner);
         s5.setAdapter(adapter5);
+        
+        
+        Spinner s6 = (Spinner) findViewById(R.id.spinner6);
+        ArrayAdapter adapter6 = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        s6.setAdapter(adapter6);
         
         
         

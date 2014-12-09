@@ -1665,8 +1665,8 @@ containing a value of this type.
         public static final int editText1=0x7f090047;
         public static final int editText2=0x7f090048;
         public static final int editText3=0x7f090049;
-        public static final int editText4=0x7f09004a;
-        public static final int editText5=0x7f09004b;
+        public static final int editText4=0x7f09004b;
+        public static final int editText5=0x7f09004a;
         public static final int edit_query=0x7f090035;
         public static final int end=0x7f09001c;
         public static final int expand_activities_button=0x7f090024;

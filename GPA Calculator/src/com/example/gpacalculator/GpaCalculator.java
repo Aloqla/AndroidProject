@@ -4,13 +4,19 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class GpaCalculator extends ActionBarActivity {
 
 	
 	private String[] arraySpinner;
+	private String[] arrayGrades;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +27,10 @@ public class GpaCalculator extends ActionBarActivity {
         this.arraySpinner = new String[] {
                 "A", "B", "C", "D", "F"
             };
-		
+        this.arrayGrades = new String[] {
+                "A", "A", "A", "A", "A"
+            };
+        
         Spinner s1 = (Spinner) findViewById(R.id.spinner1);
         ArrayAdapter adapter = new ArrayAdapter(this,
             android.R.layout.simple_spinner_item, arraySpinner);
@@ -50,6 +59,115 @@ public class GpaCalculator extends ActionBarActivity {
         ArrayAdapter adapter5 = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, arraySpinner);
         s5.setAdapter(adapter5);
+        
+        
+        
+        
+        s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+				
+        	
+        	@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int pos, long arg3) {
+					Object item = arg0.getItemAtPosition(pos);
+						arrayGrades[0]=item.toString();
+						Toast.makeText(getApplicationContext(), "The selected grade is "+ item.toString()+" At index "+pos, 10).show();
+						
+				}
+				
+				public void onNothingSelected(AdapterView<?> parent) {
+				  	}
+
+
+				  
+				  
+          });
+          
+          
+          
+          s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+				@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int pos, long arg3) {
+					Object item = arg0.getItemAtPosition(pos);
+						arrayGrades[1]=item.toString();
+						Toast.makeText(getApplicationContext(), "The selected grade is "+ item.toString(), 10).show();
+				}
+				
+				public void onNothingSelected(AdapterView<?> parent) {
+				  	}
+				  
+				  
+          });
+          
+          
+          
+          s3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+				@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int pos, long arg3) {
+					Object item = arg0.getItemAtPosition(pos);
+						arrayGrades[2]=item.toString();
+						Toast.makeText(getApplicationContext(), "The selected grade is "+ item.toString(), 10).show();
+				}
+				
+				public void onNothingSelected(AdapterView<?> parent) {
+				  	}
+				  
+				  
+          });
+          
+          
+          
+          s4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+				@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int pos, long arg3) {
+					Object item = arg0.getItemAtPosition(pos);
+						arrayGrades[3]=item.toString();
+						Toast.makeText(getApplicationContext(), "The selected grade is "+ item.toString(), 10).show();
+				}
+				
+				public void onNothingSelected(AdapterView<?> parent) {
+				  	}
+				  
+				  
+          });
+          
+          
+          s5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+				@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int pos, long arg3) {
+					Object item = arg0.getItemAtPosition(pos);
+						arrayGrades[4]=item.toString();
+						Toast.makeText(getApplicationContext(), "The selected grade is "+ item.toString(), 10).show();
+				}
+				
+				public void onNothingSelected(AdapterView<?> parent) {
+				  	}
+				  
+				  
+          });
+          
+          
+          
+          
+          Button calculateGpa = (Button) findViewById(R.id.calculateGpa);
+          
+          calculateGpa.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+						
+					for(int i=0;i<5;i++){
+//						Toast.makeText(getApplicationContext(), "Calculating GPA ", 7).show();
+						Toast.makeText(getApplicationContext(), "Grade at index "+i+" is "+ arrayGrades[i], 7).show();
+					}
+					
+				}
+			});
+          
         
         
 		

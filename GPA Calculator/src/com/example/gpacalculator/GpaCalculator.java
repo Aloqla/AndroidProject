@@ -201,10 +201,36 @@ public class GpaCalculator extends ActionBarActivity {
 				@Override
 				public void onClick(View v) {
 						
+					
+					double totalCredits=0;
 					for(int i=0;i<numOfCourses;i++){
-//						Toast.makeText(getApplicationContext(), "Calculating GPA ", 7).show();
-						Toast.makeText(getApplicationContext(), "Grade at index "+i+" is "+ arrayCreditHours[i], 7).show();
+						totalCredits += Integer.parseInt(arrayCreditHours[i]);
+						}
+if(grade1.getText().toString().equals("") ||  grade2.getText().toString().equals("") ||  grade3.getText().toString().equals("") ||  grade4.getText().toString().equals("") ||  grade5.getText().toString().equals("") ||  grade6.getText().toString().equals("")){
+Toast.makeText(getApplicationContext(), " You have missed some Grade !!! Kindly Enter that ", 20).show();		
+					}else{
+						// it means we added our grades 
+						
+						arrayGrades[0]= grade1.getText().toString();
+						arrayGrades[1]= grade2.getText().toString();
+						arrayGrades[2]= grade3.getText().toString();
+						arrayGrades[3]= grade4.getText().toString();
+						arrayGrades[4]= grade5.getText().toString();
+						arrayGrades[5]= grade6.getText().toString();
+						
+						double totalEarned=0.0;
+						double forThisCourse=0.0;
+						for(int i=0;i<numOfCourses;i++){
+							
+							forThisCourse = getEarnedPoints(arrayGrades[i]) * (Integer.parseInt(arrayCreditHours[i]));
+							totalEarned += forThisCourse;
+							
+						}
+						
+						Toast.makeText(getApplicationContext(), "Your GPA is  "+ (totalEarned/totalCredits), 20).show();
+						
 					}
+					
 					
 				}
 			});
@@ -219,6 +245,49 @@ public class GpaCalculator extends ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.gpa_calculator, menu);
 		return true;
+	}
+	
+	
+	public double getEarnedPoints(String grade){
+		if(grade.equals("A") || grade.equals("a") ){
+			return 4.0;
+		}
+		else if(grade.equals("A-") || grade.equals("a-") ){
+			return 3.7;
+		}
+		else if(grade.equals("B+") || grade.equals("b+") ){
+			return 3.3;
+		}
+		else if(grade.equals("B") || grade.equals("b") ){
+			return 3.0;
+		}
+		else if(grade.equals("B-") || grade.equals("b-") ){
+			return 2.7;
+		}
+		else if(grade.equals("C+") || grade.equals("c+") ){
+			return 2.3;
+		}
+		else if(grade.equals("C") || grade.equals("c") ){
+			return 2.0;
+		}
+		else if(grade.equals("C-") || grade.equals("c-") ){
+			return 1.7;
+		}
+		else if(grade.equals("D+") || grade.equals("d+") ){
+			return 1.3;
+		}
+		else if(grade.equals("D") || grade.equals("d") ){
+			return 1.0;
+		}
+		else if(grade.equals("D-") || grade.equals("d-") ){
+			return 0.7;
+		}
+		else if(grade.equals("F") || grade.equals("f") ){
+			return 0.0;
+		}else{
+		return 0.0;
+		}
+		
 	}
 
 	@Override

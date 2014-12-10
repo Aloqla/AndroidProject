@@ -232,7 +232,7 @@ Toast.makeText(getApplicationContext(), " You have missed some Grade !!! Kindly 
 						}
 						
 						Toast.makeText(getApplicationContext(), "Your GPA is  "+ (totalEarned/totalCredits), 20).show();
-						
+						showDialog((totalEarned/totalCredits));
 						
 					}
 					
@@ -299,6 +299,35 @@ Toast.makeText(getApplicationContext(), " You have missed some Grade !!! Kindly 
 	
 	
 	
+	
+	
+	public void showDialog(double gpa){
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(GpaCalculator.this);
+        builder.setMessage("You GPA is "+ gpa)
+               .setPositiveButton("Share it", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+                       // FIRE ZE MISSILES!
+             	      Intent shareIntent = new Intent();
+            	      shareIntent.setAction(Intent.ACTION_SEND);
+            	      shareIntent.setType("text/plain");
+            	      shareIntent.putExtra(Intent.EXTRA_TEXT, "Share your Gpa ");
+            	      startActivity(Intent.createChooser(shareIntent, "From GPA calculator"));
+                   }
+               })
+               .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+                       // User cancelled the dialog
+                   }
+               });
+        // Create the AlertDialog object and return it
+        Dialog d= builder.create();
+        
+        
+        d.show();
+        
+        
+	}
 	
 	
 	

@@ -206,13 +206,10 @@ public class GpaCalculator extends ActionBarActivity {
 				public void onClick(View v) {
 						
 					
-					double totalCredits=0;
-					for(int i=0;i<numOfCourses;i++){
-						totalCredits += Integer.parseInt(arrayCreditHours[i]);
-						}
-if(grade1.getText().toString().equals("") ||  grade2.getText().toString().equals("") ||  grade3.getText().toString().equals("") ||  grade4.getText().toString().equals("") ||  grade5.getText().toString().equals("") ||  grade6.getText().toString().equals("")){
-Toast.makeText(getApplicationContext(), " You have missed some Grade !!! Kindly Enter that ", 20).show();		
-					}else{
+
+						
+					
+					{
 						// it means we added our grades 
 						
 						arrayGrades[0]= grade1.getText().toString();
@@ -222,9 +219,25 @@ Toast.makeText(getApplicationContext(), " You have missed some Grade !!! Kindly 
 						arrayGrades[4]= grade5.getText().toString();
 						arrayGrades[5]= grade6.getText().toString();
 						
+						int currNumOfcourses=0;
+						
+						for(int i=0; i <numOfCourses;i++){
+							if(arrayGrades[i].length() == 0){
+								// do nothing
+							}else{
+								currNumOfcourses++;
+							}
+						}
+						
+						
+						double totalCredits=0;
+						for(int i=0;i<currNumOfcourses;i++){
+							totalCredits += Integer.parseInt(arrayCreditHours[i]);
+							}
+						
 						double totalEarned=0.0;
 						double forThisCourse=0.0;
-						for(int i=0;i<numOfCourses;i++){
+						for(int i=0;i<currNumOfcourses;i++){
 							
 							forThisCourse = getEarnedPoints(arrayGrades[i]) * (Integer.parseInt(arrayCreditHours[i]));
 							totalEarned += forThisCourse;

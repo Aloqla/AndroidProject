@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,12 +31,21 @@ public class GpaCalculator extends ActionBarActivity {
 	private EditText grade4;
 	private EditText grade5;
 	private EditText grade6;
-	int numOfCourses=6;
+	int numOfCourses=0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gpa_calculator);
+		
+		
+		
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			
+		     
+		     numOfCourses = Integer.parseInt(extras.getString("courses"));
+		}
 		
 		
 		grade1 = (EditText) findViewById(R.id.editText1);
@@ -52,7 +62,7 @@ public class GpaCalculator extends ActionBarActivity {
                 "3", "3", "3", "3", "3", "3"
             };
         this.arrayGrades = new String[] {
-                "A", "A", "A", "A", "A", "A"
+                "", "", "", "", "", ""
             };
         
         
@@ -91,6 +101,51 @@ public class GpaCalculator extends ActionBarActivity {
                 android.R.layout.simple_spinner_item, arraySpinner);
         s6.setAdapter(adapter6);
         
+        
+        grade1.setVisibility(View.INVISIBLE);
+        grade2.setVisibility(View.INVISIBLE);
+        grade3.setVisibility(View.INVISIBLE);
+        grade4.setVisibility(View.INVISIBLE);
+        grade5.setVisibility(View.INVISIBLE);
+        grade6.setVisibility(View.INVISIBLE);
+        
+        s1.setVisibility(View.INVISIBLE);
+        s2.setVisibility(View.INVISIBLE);
+        s3.setVisibility(View.INVISIBLE);
+        s4.setVisibility(View.INVISIBLE);
+        s5.setVisibility(View.INVISIBLE);
+        s6.setVisibility(View.INVISIBLE);
+        
+        
+        for(int i=1;i<=numOfCourses;i++){
+        	
+        	if(i==1){
+        		 grade1.setVisibility(View.VISIBLE);
+        		 s1.setVisibility(View.VISIBLE);
+        	}
+        	if(i==2){
+       		 grade2.setVisibility(View.VISIBLE);
+       		 s2.setVisibility(View.VISIBLE);
+       	}
+        	if(i==3){
+       		 grade3.setVisibility(View.VISIBLE);
+       		 s3.setVisibility(View.VISIBLE);
+       	}
+        	if(i==4){
+       		 grade4.setVisibility(View.VISIBLE);
+       		 s4.setVisibility(View.VISIBLE);
+       	}
+        	if(i==5){
+       		 grade5.setVisibility(View.VISIBLE);
+       		 s5.setVisibility(View.VISIBLE);
+       	}
+        	if(i==6){
+       		 grade6.setVisibility(View.VISIBLE);
+       		 s6.setVisibility(View.VISIBLE);
+       	}
+        	
+        	
+        }
         
         
         
@@ -212,6 +267,14 @@ public class GpaCalculator extends ActionBarActivity {
 					{
 						// it means we added our grades 
 						
+						
+						
+						double totalCredits=0;
+						for(int i=0;i<numOfCourses;i++){
+								totalCredits += Integer.parseInt(arrayCreditHours[i]); 
+						}
+						
+						
 						arrayGrades[0]= grade1.getText().toString();
 						arrayGrades[1]= grade2.getText().toString();
 						arrayGrades[2]= grade3.getText().toString();
@@ -219,25 +282,11 @@ public class GpaCalculator extends ActionBarActivity {
 						arrayGrades[4]= grade5.getText().toString();
 						arrayGrades[5]= grade6.getText().toString();
 						
-						int currNumOfcourses=0;
-						
-						for(int i=0; i <numOfCourses;i++){
-							if(arrayGrades[i].length() == 0){
-								// do nothing
-							}else{
-								currNumOfcourses++;
-							}
-						}
-						
-						
-						double totalCredits=0;
-						for(int i=0;i<currNumOfcourses;i++){
-							totalCredits += Integer.parseInt(arrayCreditHours[i]);
-							}
-						
+						Toast.makeText(getApplicationContext(), "Total Credits "+ totalCredits, 20).show();
 						double totalEarned=0.0;
 						double forThisCourse=0.0;
-						for(int i=0;i<currNumOfcourses;i++){
+						
+						for(int i=0;i<numOfCourses;i++){
 							
 							forThisCourse = getEarnedPoints(arrayGrades[i]) * (Integer.parseInt(arrayCreditHours[i]));
 							totalEarned += forThisCourse;
@@ -246,6 +295,7 @@ public class GpaCalculator extends ActionBarActivity {
 						
 						Toast.makeText(getApplicationContext(), "Your GPA is  "+ (totalEarned/totalCredits), 20).show();
 						showDialog((totalEarned/totalCredits));
+						
 						
 					}
 					

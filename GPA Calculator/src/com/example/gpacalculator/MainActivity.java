@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -17,6 +18,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        final EditText n_courses = (EditText) findViewById(R.id.coursesCount);
+        
         
         Button startCalculation = (Button) findViewById(R.id.startAppButton);
         startCalculation.setOnClickListener(new OnClickListener() {
@@ -24,7 +27,9 @@ public class MainActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 					
+				String courses = n_courses.getText().toString();
 				Intent intent = new Intent(MainActivity.this,GpaCalculator.class);
+				intent.putExtra("courses",courses);
 				startActivity(intent);
 
 			}

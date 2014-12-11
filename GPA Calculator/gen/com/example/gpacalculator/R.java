@@ -1650,7 +1650,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f090030;
         public static final int action_mode_bar_stub=0x7f09002f;
         public static final int action_mode_close_button=0x7f090022;
-        public static final int action_settings=0x7f090050;
+        public static final int action_settings=0x7f090051;
         public static final int activity_chooser_view_content=0x7f090023;
         public static final int always=0x7f090014;
         public static final int beginning=0x7f09001b;
@@ -1658,6 +1658,7 @@ containing a value of this type.
         public static final int calculateGpa=0x7f09004d;
         public static final int checkbox=0x7f09002b;
         public static final int collapseActionView=0x7f090015;
+        public static final int coursesCount=0x7f090050;
         public static final int decor_content_parent=0x7f090031;
         public static final int default_activity_button=0x7f090026;
         public static final int dialog=0x7f090019;

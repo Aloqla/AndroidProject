@@ -1635,6 +1635,8 @@ containing a value of this type.
         public static final int abc_textfield_search_material=0x7f020032;
         public static final int backgroun=0x7f020033;
         public static final int ic_launcher=0x7f020034;
+        public static final int small=0x7f020035;
+        public static final int unnamed=0x7f020036;
     }
     public static final class id {
         public static final int action_bar=0x7f090033;
@@ -1650,7 +1652,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f090030;
         public static final int action_mode_bar_stub=0x7f09002f;
         public static final int action_mode_close_button=0x7f090022;
-        public static final int action_settings=0x7f090057;
+        public static final int action_settings=0x7f090058;
         public static final int activity_chooser_view_content=0x7f090023;
         public static final int always=0x7f090014;
         public static final int beginning=0x7f09001b;
@@ -1680,6 +1682,7 @@ containing a value of this type.
         public static final int icon=0x7f090028;
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090025;
+        public static final int imageView1=0x7f090052;
         public static final int listMode=0x7f09000a;
         public static final int list_item=0x7f090027;
         public static final int middle=0x7f09001d;
@@ -1699,8 +1702,8 @@ containing a value of this type.
         public static final int search_plate=0x7f09003b;
         public static final int search_src_text=0x7f09003c;
         public static final int search_voice_btn=0x7f090040;
-        public static final int selectCourses=0x7f090053;
-        public static final int selectGPA=0x7f090055;
+        public static final int selectCourses=0x7f090054;
+        public static final int selectGPA=0x7f090056;
         public static final int shortcut=0x7f09002c;
         public static final int showCustom=0x7f090010;
         public static final int showHome=0x7f090011;
@@ -1714,11 +1717,11 @@ containing a value of this type.
         public static final int spinner7=0x7f09004d;
         public static final int spinner8=0x7f09004f;
         public static final int split_action_bar=0x7f090004;
-        public static final int startAppButton=0x7f090056;
+        public static final int startAppButton=0x7f090057;
         public static final int submit_area=0x7f09003e;
         public static final int tabMode=0x7f09000c;
-        public static final int textView2=0x7f090052;
-        public static final int textView3=0x7f090054;
+        public static final int textView1=0x7f090053;
+        public static final int textView2=0x7f090055;
         public static final int title=0x7f090029;
         public static final int top=0x7f09001f;
         public static final int up=0x7f090001;

@@ -335,6 +335,8 @@ int drawable abc_textfield_search_default_mtrl_alpha 0x7f020031
 int drawable abc_textfield_search_material 0x7f020032
 int drawable backgroun 0x7f020033
 int drawable ic_launcher 0x7f020034
+int drawable small 0x7f020035
+int drawable unnamed 0x7f020036
 int id action_bar 0x7f090033
 int id action_bar_activity_content 0x7f090003
 int id action_bar_container 0x7f090032
@@ -348,7 +350,7 @@ int id action_menu_presenter 0x7f090006
 int id action_mode_bar 0x7f090030
 int id action_mode_bar_stub 0x7f09002f
 int id action_mode_close_button 0x7f090022
-int id action_settings 0x7f090057
+int id action_settings 0x7f090058
 int id activity_chooser_view_content 0x7f090023
 int id always 0x7f090014
 int id beginning 0x7f09001b
@@ -378,6 +380,7 @@ int id homeAsUp 0x7f09000e
 int id icon 0x7f090028
 int id ifRoom 0x7f090016
 int id image 0x7f090025
+int id imageView1 0x7f090052
 int id listMode 0x7f09000a
 int id list_item 0x7f090027
 int id middle 0x7f09001d
@@ -397,8 +400,8 @@ int id search_mag_icon 0x7f09003a
 int id search_plate 0x7f09003b
 int id search_src_text 0x7f09003c
 int id search_voice_btn 0x7f090040
-int id selectCourses 0x7f090053
-int id selectGPA 0x7f090055
+int id selectCourses 0x7f090054
+int id selectGPA 0x7f090056
 int id shortcut 0x7f09002c
 int id showCustom 0x7f090010
 int id showHome 0x7f090011
@@ -412,11 +415,11 @@ int id spinner6 0x7f09004b
 int id spinner7 0x7f09004d
 int id spinner8 0x7f09004f
 int id split_action_bar 0x7f090004
-int id startAppButton 0x7f090056
+int id startAppButton 0x7f090057
 int id submit_area 0x7f09003e
 int id tabMode 0x7f09000c
-int id textView2 0x7f090052
-int id textView3 0x7f090054
+int id textView1 0x7f090053
+int id textView2 0x7f090055
 int id title 0x7f090029
 int id top 0x7f09001f
 int id up 0x7f090001

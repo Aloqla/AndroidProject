@@ -63,7 +63,7 @@ public class GpaCalculator extends ActionBarActivity {
 		
 		
         this.arraySpinner = new String[] {
-                "1", "2", "3", "4"
+                "Credit Hours ","1", "2", "3", "4"
             };
         this.arrayCreditHours = new String[] {
                 "3", "3", "3", "3", "3", "3", "3", "3"
@@ -79,7 +79,7 @@ public class GpaCalculator extends ActionBarActivity {
             android.R.layout.simple_spinner_item, arraySpinner);
         s1.setAdapter(adapter);
         
-        
+               
         Spinner s2 = (Spinner) findViewById(R.id.spinner2);
         ArrayAdapter adapter2 = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, arraySpinner);
@@ -254,7 +254,6 @@ public class GpaCalculator extends ActionBarActivity {
 				  
           });
           
-          
           s5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 				@Override
 				public void onItemSelected(AdapterView<?> arg0, View arg1,
@@ -264,11 +263,8 @@ public class GpaCalculator extends ActionBarActivity {
 				}
 				
 				public void onNothingSelected(AdapterView<?> parent) {
-				  	}
-				  
-				  
+				  	}  
           });
-          
           
           
           s6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -326,10 +322,20 @@ public class GpaCalculator extends ActionBarActivity {
 				public void onClick(View v) {
 						
 					
-
-						
+					boolean carryOn = true;
 					
-					{
+						for(int x=0;x<numOfCourses;x++){
+							
+							if(arrayCreditHours[x].equals("Credit Hours")){
+								
+								carryOn=false;
+								
+							}
+							
+						}
+				
+					
+				if(carryOn == true){
 						// it means we added our grades 
 						
 						
@@ -349,24 +355,44 @@ public class GpaCalculator extends ActionBarActivity {
 						arrayGrades[6]= grade7.getText().toString();
 						arrayGrades[7]= grade8.getText().toString();
 						
-						Toast.makeText(getApplicationContext(), "Total Credits "+ totalCredits, 20).show();
+					
 						double totalEarned=0.0;
 						double forThisCourse=0.0;
-						
+						boolean calculated = true;
 						for(int i=0;i<numOfCourses;i++){
 							
 							if(gpaOutOf==4){
-							forThisCourse = getEarnedPoints4(arrayGrades[i]) * (Integer.parseInt(arrayCreditHours[i]));
+								if(getEarnedPoints4(arrayGrades[i]) == 10.0){
+					Toast.makeText(getApplicationContext(), " Enter Correct Grades ", 20).show();
+					calculated=false;
+								}else{
+									forThisCourse = getEarnedPoints4(arrayGrades[i]) * (Integer.parseInt(arrayCreditHours[i]));
+									
+								}
+							
+							
+							
 							}else{
-								forThisCourse = getEarnedPoints5(arrayGrades[i]) * (Integer.parseInt(arrayCreditHours[i]));
+									if(getEarnedPoints4(arrayGrades[i]) == 10.0){
+										Toast.makeText(getApplicationContext(), " Enter Correct Grades ", 20).show();
+										calculated=false;
+									
+								}else{
+									forThisCourse = getEarnedPoints5(arrayGrades[i]) * (Integer.parseInt(arrayCreditHours[i]));
+								}
 							}
 							totalEarned += forThisCourse;
 							
 						}
 						
-						
+						if(calculated == true){
 						showDialog((totalEarned/totalCredits));
+						}
 						
+					}else{
+						
+						
+		Toast.makeText(getApplicationContext(), "Select The Credit Hours First ", 20).show();
 						
 					}
 					
@@ -424,7 +450,7 @@ public class GpaCalculator extends ActionBarActivity {
 		else if(grade.equals("F") || grade.equals("f") ){
 			return 0.0;
 		}else{
-		return 0.0;
+		return 10.0;
 		}
 		
 	}
@@ -469,7 +495,7 @@ public double getEarnedPoints5(String grade){
 		else if(grade.equals("F") || grade.equals("f") ){
 			return 0.0;
 		}else{
-		return 0.0;
+		return 10.0;
 		}
 	}
 	
@@ -477,6 +503,9 @@ public double getEarnedPoints5(String grade){
 	
 	public void showDialog(double gpa){
 		
+		gpa = (double) Math.round(gpa * 100) / 100;
+		
+		final double shareGPA = gpa;
 		AlertDialog.Builder builder = new AlertDialog.Builder(GpaCalculator.this);
         builder.setMessage("You GPA is "+ gpa)
                .setPositiveButton("Share it", new DialogInterface.OnClickListener() {
@@ -485,7 +514,7 @@ public double getEarnedPoints5(String grade){
              	      Intent shareIntent = new Intent();
             	      shareIntent.setAction(Intent.ACTION_SEND);
             	      shareIntent.setType("text/plain");
-            	      shareIntent.putExtra(Intent.EXTRA_TEXT, "Share your Gpa ");
+            	      shareIntent.putExtra(Intent.EXTRA_TEXT, "Hey! Check my GPA! it's "+ shareGPA);
             	      startActivity(Intent.createChooser(shareIntent, "From GPA calculator"));
                    }
                })

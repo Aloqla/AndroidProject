@@ -31,7 +31,10 @@ public class GpaCalculator extends ActionBarActivity {
 	private EditText grade4;
 	private EditText grade5;
 	private EditText grade6;
+	private EditText grade7;
+	private EditText grade8;
 	int numOfCourses=0;
+	private int gpaOutOf=4;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class GpaCalculator extends ActionBarActivity {
 			
 		     
 		     numOfCourses = Integer.parseInt(extras.getString("courses"));
+		     gpaOutOf = Integer.parseInt(extras.getString("gpa"));
 		}
 		
 		
@@ -54,15 +58,19 @@ public class GpaCalculator extends ActionBarActivity {
 		grade4 = (EditText) findViewById(R.id.editText4);
 		grade5 = (EditText) findViewById(R.id.editText5);
 		grade6 = (EditText) findViewById(R.id.editText6);
+		grade7 = (EditText) findViewById(R.id.editText7);
+		grade8 = (EditText) findViewById(R.id.editText8);
+		
 		
         this.arraySpinner = new String[] {
                 "1", "2", "3", "4"
             };
         this.arrayCreditHours = new String[] {
-                "3", "3", "3", "3", "3", "3"
+                "3", "3", "3", "3", "3", "3", "3", "3"
             };
+        
         this.arrayGrades = new String[] {
-                "", "", "", "", "", ""
+                "A", "A", "A", "A", "A", "A", "A", "A"
             };
         
         
@@ -102,12 +110,30 @@ public class GpaCalculator extends ActionBarActivity {
         s6.setAdapter(adapter6);
         
         
+        Spinner s7 = (Spinner) findViewById(R.id.spinner7);
+        ArrayAdapter adapter7 = new ArrayAdapter(this,
+        android.R.layout.simple_spinner_item, arraySpinner);
+        s7.setAdapter(adapter7);
+        
+        Spinner s8 = (Spinner) findViewById(R.id.spinner8);
+        ArrayAdapter adapter8 = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        s8.setAdapter(adapter8);
+        
+        
+        
+       
+
+        
+        
         grade1.setVisibility(View.INVISIBLE);
         grade2.setVisibility(View.INVISIBLE);
         grade3.setVisibility(View.INVISIBLE);
         grade4.setVisibility(View.INVISIBLE);
         grade5.setVisibility(View.INVISIBLE);
         grade6.setVisibility(View.INVISIBLE);
+        grade7.setVisibility(View.INVISIBLE);
+        grade8.setVisibility(View.INVISIBLE);
         
         s1.setVisibility(View.INVISIBLE);
         s2.setVisibility(View.INVISIBLE);
@@ -115,6 +141,8 @@ public class GpaCalculator extends ActionBarActivity {
         s4.setVisibility(View.INVISIBLE);
         s5.setVisibility(View.INVISIBLE);
         s6.setVisibility(View.INVISIBLE);
+        s7.setVisibility(View.INVISIBLE);
+        s8.setVisibility(View.INVISIBLE);
         
         
         for(int i=1;i<=numOfCourses;i++){
@@ -143,6 +171,16 @@ public class GpaCalculator extends ActionBarActivity {
        		 grade6.setVisibility(View.VISIBLE);
        		 s6.setVisibility(View.VISIBLE);
        	}
+        	
+        	if(i==7){
+         		 grade7.setVisibility(View.VISIBLE);
+         		 s7.setVisibility(View.VISIBLE);
+         	}
+       	
+       	if(i==8){
+         		 grade8.setVisibility(View.VISIBLE);
+         		 s8.setVisibility(View.VISIBLE);
+         	}
         	
         	
         }
@@ -248,6 +286,33 @@ public class GpaCalculator extends ActionBarActivity {
           });
           
           
+          s7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+				@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int pos, long arg3) {
+					Object item = arg0.getItemAtPosition(pos);
+						arrayCreditHours[6]=item.toString();
+				}
+				
+				public void onNothingSelected(AdapterView<?> parent) {
+				  	}
+				  
+				  
+          });
+          
+          s8.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+				@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int pos, long arg3) {
+					Object item = arg0.getItemAtPosition(pos);
+						arrayCreditHours[7]=item.toString();
+				}
+				
+				public void onNothingSelected(AdapterView<?> parent) {
+				  	}
+				  
+				  
+          });
           
           
           
@@ -281,6 +346,8 @@ public class GpaCalculator extends ActionBarActivity {
 						arrayGrades[3]= grade4.getText().toString();
 						arrayGrades[4]= grade5.getText().toString();
 						arrayGrades[5]= grade6.getText().toString();
+						arrayGrades[6]= grade7.getText().toString();
+						arrayGrades[7]= grade8.getText().toString();
 						
 						Toast.makeText(getApplicationContext(), "Total Credits "+ totalCredits, 20).show();
 						double totalEarned=0.0;
@@ -288,12 +355,16 @@ public class GpaCalculator extends ActionBarActivity {
 						
 						for(int i=0;i<numOfCourses;i++){
 							
-							forThisCourse = getEarnedPoints(arrayGrades[i]) * (Integer.parseInt(arrayCreditHours[i]));
+							if(gpaOutOf==4){
+							forThisCourse = getEarnedPoints4(arrayGrades[i]) * (Integer.parseInt(arrayCreditHours[i]));
+							}else{
+								forThisCourse = getEarnedPoints5(arrayGrades[i]) * (Integer.parseInt(arrayCreditHours[i]));
+							}
 							totalEarned += forThisCourse;
 							
 						}
 						
-						Toast.makeText(getApplicationContext(), "Your GPA is  "+ (totalEarned/totalCredits), 20).show();
+						
 						showDialog((totalEarned/totalCredits));
 						
 						
@@ -316,7 +387,7 @@ public class GpaCalculator extends ActionBarActivity {
 	}
 	
 	
-	public double getEarnedPoints(String grade){
+	public double getEarnedPoints4(String grade){
 		if(grade.equals("A") || grade.equals("a") ){
 			return 4.0;
 		}
@@ -360,7 +431,47 @@ public class GpaCalculator extends ActionBarActivity {
 
 	
 	
-	
+public double getEarnedPoints5(String grade){
+		
+		if(grade.equals("A") || grade.equals("a") ){
+			return 5.0;
+		}
+		else if(grade.equals("A-") || grade.equals("a-") ){
+			return 4.7;
+		}
+		else if(grade.equals("B+") || grade.equals("b+") ){
+			return 4.3;
+		}
+		else if(grade.equals("B") || grade.equals("b") ){
+			return 4.0;
+		}
+		else if(grade.equals("B-") || grade.equals("b-") ){
+			return 3.7;
+		}
+		else if(grade.equals("C+") || grade.equals("c+") ){
+			return 3.3;
+		}
+		else if(grade.equals("C") || grade.equals("c") ){
+			return 3.0;
+		}
+		else if(grade.equals("C-") || grade.equals("c-") ){
+			return 2.7;
+		}
+		else if(grade.equals("D+") || grade.equals("d+") ){
+			return 2.3;
+		}
+		else if(grade.equals("D") || grade.equals("d") ){
+			return 2.0;
+		}
+		else if(grade.equals("D-") || grade.equals("d-") ){
+			return 1.7;
+		}
+		else if(grade.equals("F") || grade.equals("f") ){
+			return 0.0;
+		}else{
+		return 0.0;
+		}
+	}
 	
 	
 	
